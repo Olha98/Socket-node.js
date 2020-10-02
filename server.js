@@ -6,7 +6,7 @@ const io = require("socket.io")(server);
 
 setInterval(
   () => io.sockets.emit("message", { message: "Hello everyone!" }),
-  60000
+  30000
 );
 // setInterval(() => io.sockets.emit('message', { message: "Hello everyone!" }), 60000);
 server.listen(9999, (err) => {

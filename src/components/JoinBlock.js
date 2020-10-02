@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./JoinBlock.module.css";
 import axios from 'axios'
-import { getNewSocker } from "../redux/actions.js/sockerActions.js";
+import { getNewSocker } from "../redux/actions/sockerActions.js";
 import { connect, useSelector } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styles from './sockerList.module.css';
@@ -13,10 +13,10 @@ import { v4 as uuidv4 } from "uuid";
 import "antd/dist/antd.css";
 
 
-function JoinBlock({ onGetNewSocker }) {
+function JoinBlock() {
 
 
-  const socket = io("http://localhost:9999/");
+  // const socket = io("http://localhost:9999/");
   const storeSockers = useSelector((state) => state.textSockers);
   // console.log(storeSockers, "storeSockers");
 
@@ -30,10 +30,10 @@ function JoinBlock({ onGetNewSocker }) {
   // api()
 
 
-  socket.on("message", (data) => {
-    console.log(data);
-    onGetNewSocker({ ...data, id: uuidv4() });
-  });
+  // socket.on("message", (data) => {
+  //   console.log(data);
+  //   onGetNewSocker({ ...data, id: uuidv4() });
+  // });
 
   return (
     <div className={css.wrapper}>
@@ -68,8 +68,11 @@ function JoinBlock({ onGetNewSocker }) {
   );
 }
 
-const mapDispatchToProps = {
-  onGetNewSocker: getNewSocker,
-};
+// const mapDispatchToProps = {
+//   onGetNewSocker: getNewSocker,
+// };
 
-export default connect(null, mapDispatchToProps)(JoinBlock);
+
+export default JoinBlock;
+
+// export default connect(null, mapDispatchToProps)(JoinBlock);
