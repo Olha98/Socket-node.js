@@ -1,75 +1,75 @@
 import React from "react";
 import css from "./JoinBlock.module.css";
-import {getNewSocker} from '../redux/actions.js/sockerActions.js'
-import { connect, useSelector } from 'react-redux';
+import axios from 'axios'
+import { getNewSocker } from "../redux/actions.js/sockerActions.js";
+import { connect, useSelector } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styles from './sockerList.module.css';
 // import InfiniteScroll from "react-infinite-scroller";
 import io from "socket.io-client";
 import { List, Avatar } from "antd";
 import "react-virtualized/styles.css";
+import { v4 as uuidv4 } from "uuid";
 import "antd/dist/antd.css";
 
-const data = [
-  {
-    id: "4",
-    title: "Ant Design Title 1",
-  },
-  {
-    id: "3",
-    title: "Ant Design Title 2",
-  },
-  {
-    id: "2",
-    title: "Ant Design Title 3",
-  },
-  {
-    id: "1",
-    title: "Ant Design Title 4",
-  },
-];
 
-function JoinBlock({onGetNewSocker}) {
+function JoinBlock({ onGetNewSocker }) {
 
- const storeSockers = useSelector(state => state.textSockers);
- console.log(storeSockers,"storeSockers")
-//  storeSockers && storeSockers.map(storeSocker => console.log(storeSocker,"re"));
+
   const socket = io("http://localhost:9999/");
-//   const arraySokets = [];
+  const storeSockers = useSelector((state) => state.textSockers);
+  // console.log(storeSockers, "storeSockers");
+
+
+  // function api(){
+  //   axios.get('http://api.greatwords.ru/ ')
+  //   .then(data=> console.log(data))
+   
+  // }
+
+  // api()
+
 
   socket.on("message", (data) => {
-	console.log(data);
-	onGetNewSocker(data);
-    // arraySokets.push(data);
-   
-    // console.log(arraySokets);
+    console.log(data);
+    onGetNewSocker({ ...data, id: uuidv4() });
   });
 
   return (
     <div className={css.wrapper}>
       <div className={css.wrapper_list}>
-      
-          <List
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                  }
-                  title={<a href="https://ant.design">{item.title}</a>}
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                />
-              </List.Item>
-            )}
-          />
-       
+        <List
+          itemLayout="horizontal"
+          dataSource={storeSockers}
+          renderItem={(item) => (
+            <TransitionGroup >
+              <CSSTransition
+                key={item.id}
+                in={true}
+                timeout={250}
+                classNames={styles}
+                unmountOnExit
+              >
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={
+                      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    }
+                    title={<a href="https://ant.design">{item.message}</a>}
+                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                  />
+                </List.Item>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </div>
     </div>
   );
 }
 
 const mapDispatchToProps = {
-	onGetNewSocker: getNewSocker,
-  };
+  onGetNewSocker: getNewSocker,
+};
 
 export default connect(null, mapDispatchToProps)(JoinBlock);
