@@ -9,7 +9,7 @@ require("dotenv").config({ path: path.join(__dirname, "./.env") });
 
 setInterval(
   () => io.sockets.emit("message", { message: "Hello everyone!" }),
-  10000
+  60000
 );
 
 server.listen(process.env.PORT, (err) => {
