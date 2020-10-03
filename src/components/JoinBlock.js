@@ -5,7 +5,7 @@ import "react-virtualized/styles.css";
 import "antd/dist/antd.css";
 import CustomScrollbars from "./Scroll";
 import massage from "../image/sourdce.gif";
-import css from "./joinBlock.module.css";
+import css from "./block.module.css"
 
 function JoinBlock() {
   const storeSockets = useSelector((state) => state.textSockets);
