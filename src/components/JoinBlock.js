@@ -5,10 +5,10 @@ import "react-virtualized/styles.css";
 import "antd/dist/antd.css";
 import CustomScrollbars from "./Scroll";
 import massage from "../image/sourdce.gif";
-import css from "./JoinBlock.module.css";
+import css from "./joinBlock.module.css";
 
 function JoinBlock() {
-  const storeSockets = useSelector((state) => state.textSockers);
+  const storeSockets = useSelector((state) => state.textSockets);
 
   const massageStyle = `
 .ant-list-item{
