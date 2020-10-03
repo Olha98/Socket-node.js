@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars';
-import  css from "./sockerList.module.css"
+
 
 
 class CustomScrollbars extends Component {
@@ -8,11 +8,11 @@ class CustomScrollbars extends Component {
 	  return (
 		<Scrollbars
 		  renderThumbHorizontal={props => (
-			<div {...props} className="thumb-horizontal" />
+			<div {...props} />
 		  )}
 	
 		  renderThumbVertical={props => (
-			<div {...props} className="thumb-vertical" />
+			<div {...props} />
 		  )}
 		  {...this.props}
 		/>

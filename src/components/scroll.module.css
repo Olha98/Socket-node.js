@@ -1,13 +1,7 @@
 .thumbVertical {
-	background-color: #2911b3;
 	border-radius: 6px;
+	width: 20px;
+	
   }
 
-  .thumbHorizontal {
-	background-color: transparent;
-	border-radius: 6px;
-  }
-  
-  .trackVertical {
-	border-radius: 6px;
-  }
+ 
