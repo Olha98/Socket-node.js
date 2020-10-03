@@ -1,23 +1,21 @@
 import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import rootReducer from "./reducers/root";
-import { getNewSocker } from "./actions/sockerActions";
-import io from "socket.io-client";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { v4 as uuidv4 } from "uuid";
+import io from "socket.io-client";
+import rootReducer from "./reducers/root";
+import { getNewSocket } from "./actions/socketActions";
 
-const sockerMiddlewares = (store) => {
+const socketMiddlewares = (store) => {
   const socket = io("http://localhost:9999/");
 
   socket.on("message", (data) => {
-    console.log(data);
-    store.dispatch(getNewSocker({ ...data, id: uuidv4() }));
+    store.dispatch(getNewSocket({ ...data, id: uuidv4() }));
   });
-
   return (next) => (action) => next(action);
 };
 
-const middlewares = [thunk, sockerMiddlewares];
+const middlewares = [thunk, socketMiddlewares];
 
 const store = createStore(
   rootReducer,

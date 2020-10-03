@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import {sockerReducer} from './sockerReducer'
+import {socketReducer} from './socketReducer'
 
 
 const root = combineReducers({
-textSockers: sockerReducer
+textSockets: socketReducer
 });
 
 export default root;

@@ -8,9 +8,9 @@ import massage from "../image/sourdce.gif";
 import css from "./JoinBlock.module.css";
 
 function JoinBlock() {
-  const storeSockers = useSelector((state) => state.textSockers);
+  const storeSockets = useSelector((state) => state.textSockers);
 
-  const birthdayStyle = `
+  const massageStyle = `
 .ant-list-item{
   padding:10px;
   border: solid 1px #FC5185;
@@ -28,13 +28,13 @@ function JoinBlock() {
 
   return (
     <>
-      <style>{birthdayStyle}</style>
+      <style>{massageStyle}</style>
       <div className={css.wrapper}>
         <CustomScrollbars style={{ width: 600, height: 600 }}>
           <div className={css.wrapper_list}>
             <List
               itemLayout="horizontal"
-              dataSource={storeSockers}
+              dataSource={storeSockets}
               renderItem={(item) => (
                     <List.Item>
                       <List.Item.Meta
