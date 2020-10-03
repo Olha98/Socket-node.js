@@ -7,7 +7,7 @@ import rootReducer from "./reducers/root";
 import { getNewSocket } from "./actions/socketActions";
 
 const socketMiddlewares = (store) => {
-  const socket = io("http://localhost:9999/");
+  const socket = io("https://stark-brook-53019.herokuapp.com/");
 
   socket.on("message", (data) => {
     store.dispatch(getNewSocket({ ...data, id: uuidv4() }));
